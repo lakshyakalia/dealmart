@@ -1,11 +1,8 @@
 package com.dealmart.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -15,7 +12,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long userId;
 	
-	@Column(name="fullName", nullable = false)
+	@Column(name="full_name", nullable = false)
 	private String fullName;
 	
 	@Column(name="email", nullable = false)
@@ -24,11 +21,14 @@ public class User {
 	@Column(name="address")
 	private String address;
 	
-	@Column(name="phoneNumber")
+	@Column(name="phone_number")
 	private String phoneNumber;
 	
-	@Column(name="paymentDetails")
+	@Column(name="payment_details")
 	private String paymentDetails;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Rating> ratings;
 	
 	public long getUserId() {
 		return userId;
