@@ -1,11 +1,8 @@
 package com.dealmart.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name="products")
@@ -14,13 +11,13 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long productId;
 	
-	@Column(name="productName", nullable = false)
+	@Column(name="product_name", nullable = false)
 	private String productName;
 	
-	@Column(name="productDescription")
+	@Column(name="product_description")
 	private String productDescription;
 
-	@Column(name="productCategory", nullable = false)
+	@Column(name="product_category", nullable = false)
 	private String productCategory;
 	
 	@Column(name="price", nullable = false)
@@ -29,8 +26,11 @@ public class Product {
 	@Column(name="seller", nullable = false)
 	private String seller;
 	
-	@Column(name="totalQuantity", nullable = false)
+	@Column(name="total_quantity", nullable = false)
 	private String totalQuantity;
+
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Rating> ratings;
 
 	public long getProductId() {
 		return productId;
