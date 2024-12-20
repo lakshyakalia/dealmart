@@ -4,15 +4,18 @@ import com.dealmart.exception.ResourceNotFoundException;
 import com.dealmart.model.Rating;
 import com.dealmart.repository.RatingRepository;
 import com.dealmart.service.RatingService;
+import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.util.List;
 
+@Service
 public class RatingServiceImpl implements RatingService {
 
     private RatingRepository ratingRepository;
 
     public RatingServiceImpl(RatingRepository ratingRepository) {
+        super();
         this.ratingRepository = ratingRepository;
     }
 

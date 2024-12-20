@@ -13,7 +13,7 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())  // Disable CSRF protection
             .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/users/**", "/products/**").permitAll()  // Allow all requests to /users without authentication
+                .requestMatchers("/users/**", "/products/**", "/carts/**", "/ratings/**").permitAll()  // Allow all requests to /users without authentication
                 .anyRequest().authenticated());  // Require authentication for other paths
 
         return http.build();
