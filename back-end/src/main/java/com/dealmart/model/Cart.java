@@ -22,6 +22,10 @@ public class Cart {
     private int quantity;
 
 
+    public long getCartId() {
+        return cartId;
+    }
+
     public User getUser() {
         return user;
     }

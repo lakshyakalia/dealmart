@@ -2,6 +2,8 @@ package com.dealmart.service.impl;
 
 import java.util.List;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.dealmart.exception.ResourceNotFoundException;
@@ -26,8 +28,15 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> getAllProducts() {
-		return productRepository.findAll();
+	public List<Product> getAllProducts(String category, int offset, int limit) {
+		Pageable pageable = PageRequest.of(offset, limit);
+
+		if(category == null || category.isEmpty()){
+			return productRepository.findAll(pageable).getContent();
+		}
+		else{
+			return productRepository.findByCategory(category, pageable);
+		}
 	}
 
 	@Override
@@ -47,6 +56,7 @@ public class ProductServiceImpl implements ProductService {
 		existingProduct.setProductName(product.getProductName());
 		existingProduct.setSeller(product.getSeller());
 		existingProduct.setTotalQuantity(product.getTotalQuantity());
+		existingProduct.setImage(product.getImage());
 		
 		productRepository.save(existingProduct);
 		

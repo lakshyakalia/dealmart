@@ -3,6 +3,7 @@ package com.dealmart.service.impl;
 import com.dealmart.exception.ResourceNotFoundException;
 import com.dealmart.model.Cart;
 import com.dealmart.repository.CartRepository;
+import com.dealmart.response.CartResponseBody;
 import com.dealmart.service.CartService;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +33,26 @@ public class CartServiceImpl implements CartService {
     public Cart getCartById(long id) {
         return cartRepository.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("Cart", "Id", id));
+    }
+
+    @Override
+    public List<CartResponseBody> getCartByUserId(long id) {
+        List<Cart> cartItems = cartRepository.findByUser_UserId(id);
+        return cartItems.stream().map(this::mapToResponseBody).toList();
+    }
+
+
+    private CartResponseBody mapToResponseBody(Cart cart) {
+        CartResponseBody response = new CartResponseBody();
+        response.setId(cart.getCartId());
+        response.setTitle(cart.getProduct().getProductName());
+        response.setPrice(cart.getProduct().getPrice());
+        response.setDescription(cart.getProduct().getProductDescription());
+        response.setCategory(cart.getProduct().getProductCategory());
+        response.setImage(cart.getProduct().getImage());
+
+
+        return response;
     }
 
     @Override

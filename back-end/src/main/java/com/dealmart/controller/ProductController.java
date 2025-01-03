@@ -4,20 +4,14 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.dealmart.model.Product;
 import com.dealmart.service.ProductService;
 
 @RestController
 @RequestMapping("/products")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ProductController {
 	
 	private ProductService productService;
@@ -33,8 +27,8 @@ public class ProductController {
 	}
 	
 	@GetMapping
-	public List<Product> getAllProducts(){
-		return productService.getAllProducts();
+	public List<Product> getAllProducts(@RequestParam(value = "category", required = false) String category, @RequestParam("offset") int offset, @RequestParam("limit") int limit){
+		return productService.getAllProducts(category, offset, limit);
 	}
 	
 	@GetMapping("{id}")

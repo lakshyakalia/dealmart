@@ -1,6 +1,7 @@
 package com.dealmart.controller;
 
 import com.dealmart.model.Cart;
+import com.dealmart.response.CartResponseBody;
 import com.dealmart.service.CartService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/carts")
+@CrossOrigin(origins = "http://localhost:3000")
 public class CartController {
 
     private CartService cartService;
@@ -29,9 +31,14 @@ public class CartController {
         return cartService.getAllCarts();
     }
 
+//    @GetMapping("{id}")
+//    public ResponseEntity<Cart> getCartById(@PathVariable("id") long cartId){
+//        return new ResponseEntity<Cart>(cartService.getCartById(cartId), HttpStatus.OK);
+//    }
+
     @GetMapping("{id}")
-    public ResponseEntity<Cart> getCartById(@PathVariable("id") long cartId){
-        return new ResponseEntity<Cart>(cartService.getCartById(cartId), HttpStatus.OK);
+    public List<CartResponseBody> getCartByUserId(@PathVariable("id") long userId){
+        return cartService.getCartByUserId(userId);
     }
 
     @PutMapping("{id}")

@@ -13,7 +13,7 @@ public class Product {
 	
 	@Column(name="product_name", nullable = false)
 	private String productName;
-	
+
 	@Column(name="product_description")
 	private String productDescription;
 
@@ -28,6 +28,9 @@ public class Product {
 	
 	@Column(name="total_quantity", nullable = false)
 	private String totalQuantity;
+
+	@Column(name="image")
+	private String image;
 
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Rating> ratings;
@@ -87,6 +90,12 @@ public class Product {
 	public void setTotalQuantity(String totalQuantity) {
 		this.totalQuantity = totalQuantity;
 	}
-	
-	
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 }
