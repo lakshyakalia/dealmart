@@ -1,4 +1,6 @@
 # Dealmart - E-commerce Website
+![image](https://github.com/user-attachments/assets/5e811d3f-6986-430a-ab31-03aedc4b3ead)
+
 
 Dealmart is an e-commerce platform that allows users to browse products, add them to their cart, and place orders. Sellers can list their products, manage their inventory, and view orders. The platform includes features such as user authentication, product rating, and order management.
 
