@@ -4,6 +4,8 @@
 
 Dealmart is an e-commerce platform that allows users to browse products, add them to their cart, and place orders. Sellers can list their products, manage their inventory, and view orders. The platform includes features such as user authentication, product rating, and order management.
 
+**[Dealmart - Frontend React Code](https://github.com/lakshyakalia/dealmart-react)**![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+
 ## Features
 - User registration and login
 - Product browsing and search
