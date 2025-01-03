@@ -10,7 +10,6 @@ Dealmart is an e-commerce platform that allows users to browse products, add the
 - Cart management
 - Order placement and tracking
 - Product rating and reviews
-- Seller dashboard for product management
 
 ## Technologies Used
 - Backend: Java, Spring Boot
